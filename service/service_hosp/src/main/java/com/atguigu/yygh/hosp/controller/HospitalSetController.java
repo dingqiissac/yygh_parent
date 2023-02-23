@@ -108,6 +108,28 @@ public class HospitalSetController {
         }
     }
 
+    //setting locked and unlocked
+    @PutMapping("lockHospitalSet/{id}/{status}")
+    public Result lockHospitalSet(@PathVariable Long id, @PathVariable Integer status){
+        HospitalSet hospitalSet = hospitalSetService.getById(id);
+        hospitalSet.setStatus(status);
+        boolean b = hospitalSetService.updateById(hospitalSet);
+        if (b) {
+            return Result.ok();
+        }else {
+            return Result.fail();
+        }
+    }
+    //send sign key
+    @PutMapping("sendKey/{id}")
+    public Result lockHospitalSet(@PathVariable Long id){
+        HospitalSet hospitalSet = hospitalSetService.getById(id);
+        String signKey = hospitalSet.getSignKey();
+        String hoscode = hospitalSet.getHoscode();
+        //todo
+
+        return Result.ok();
+    }
 }
 
 
